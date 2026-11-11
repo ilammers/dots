@@ -2,6 +2,8 @@
 
 Fedora + Hyprland setup.
 
+![desktop](docs/screenshot.jpg)
+
 | Path | What |
 | --- | --- |
 | `config/alacritty` | terminal |
