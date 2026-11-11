@@ -41,6 +41,7 @@ PROMPT='${C_USER}%n ${C_PATH}%(4~|.../%3~|%~)${C_GIT}$(_git_branch)${C_RST}
 alias n='nvim'
 alias c='clear'
 alias ff='fastfetch'
+alias l='ls -la'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
@@ -61,3 +62,16 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey -e
+
+# Navigation keys (Alacritty's escape codes)
+bindkey '^[[1;5D' backward-word      # Ctrl+Left
+bindkey '^[[1;5C' forward-word       # Ctrl+Right
+bindkey '^[[H'    beginning-of-line  # Home
+bindkey '^[[1~'   beginning-of-line
+bindkey '^[OH'    beginning-of-line
+bindkey '^[[F'    end-of-line        # End
+bindkey '^[[4~'   end-of-line
+bindkey '^[OF'    end-of-line
+bindkey '^[[3~'   delete-char        # Delete
+
+unset zle_bracketed_paste

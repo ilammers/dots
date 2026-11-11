@@ -129,6 +129,63 @@ hl.config({
 })
 
 ----------------------------------------------------------------
+-- TILING MODES — cycle with SUPER + ` (SUPER + SHIFT + ` goes back)
+----------------------------------------------------------------
+-- Custom "grid" layout: 2 columns of equal cells.
+-- 1 window = full screen, 2 = left/right halves, 3-4 = the four corners,
+-- 5+ adds more rows so every window stays the same size.
+hl.layout.register("grid", {
+	recalculate = function(ctx)
+		local n = #ctx.targets
+		if n == 0 then
+			return
+		end
+		local cols = n == 1 and 1 or 2
+		local rows = math.ceil(n / cols)
+		for i, t in ipairs(ctx.targets) do
+			t:place(ctx:grid_cell(i, cols, rows))
+		end
+	end,
+})
+
+-- The first entry is the default and matches the settings above.
+local tiling_modes = {
+	{
+		name = "Centered master",
+		config = { general = { layout = "master" }, master = { orientation = "center" } },
+	},
+	{
+		name = "Master + stack",
+		config = { general = { layout = "master" }, master = { orientation = "left" } },
+	},
+	{
+		name = "Dwindle (spiral)",
+		config = { general = { layout = "dwindle" } },
+	},
+	{
+		name = "Scrolling columns",
+		config = { general = { layout = "scrolling" }, scrolling = { column_width = 0.33 } },
+	},
+	{
+		name = "Grid (2×2 corners)",
+		config = { general = { layout = "lua:grid" } }, -- custom layouts get a "lua:" prefix
+	},
+}
+
+local tiling_index = 1
+
+local function cycle_tiling(step)
+	tiling_index = (tiling_index - 1 + step) % #tiling_modes + 1
+	local m = tiling_modes[tiling_index]
+	hl.config(m.config)
+	hl.notification.create({
+		text = string.format("Tiling (%d/%d)", tiling_index, #tiling_modes),
+		timeout = 1500,
+		color = "rgba(" .. c.teal .. "ff)",
+	})
+end
+
+----------------------------------------------------------------
 -- INPUT
 ----------------------------------------------------------------
 hl.config({
@@ -147,6 +204,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("swaybg -i " .. wallpaper .. " -m fill")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("hypridle")
+	-- Case lighting: the Legion tower forgets its colors on power off
+	hl.exec_cmd(os.getenv("HOME") .. "/test-builds/openrgb-legion/openrgb --noautoconnect --profile sand")
 end)
 
 ----------------------------------------------------------------
@@ -159,7 +218,6 @@ hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(fileMgr))
-hl.bind(mod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -169,9 +227,9 @@ hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 
 -- Focus
 hl.bind(mod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mod .. " + L", hl.dsp.focus({ direction = "right" })) -- NOTE: collides with lock above
+hl.bind(mod .. " + L", hl.dsp.focus({ direction = "right" })) -- lock is SUPER + SHIFT + Q
 hl.bind(mod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + J", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + up", hl.dsp.focus({ direction = "up" }))
@@ -192,6 +250,20 @@ hl.bind(mod .. " + CTRL + J", hl.dsp.window.resize({ x = 0, y = 40, relative = t
 -- Master-width nudge (layout messages are layout-specific)
 hl.bind(mod .. " + minus", hl.dsp.layout("mfact -0.02"))
 hl.bind(mod .. " + equal", hl.dsp.layout("mfact +0.02"))
+
+-- Cycle through windows on the current workspace (raises floating ones too)
+hl.bind(mod .. " + TAB", function()
+	hl.dispatch(hl.dsp.window.cycle_next())
+	hl.dispatch(hl.dsp.window.bring_to_top())
+end)
+hl.bind(mod .. " + SHIFT + TAB", function()
+	hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
+	hl.dispatch(hl.dsp.window.bring_to_top())
+end)
+
+-- Tiling mode switcher (see TILING MODES above)
+hl.bind(mod .. " + grave", function() cycle_tiling(1) end)
+hl.bind(mod .. " + SHIFT + grave", function() cycle_tiling(-1) end)
 
 -- Workspaces
 for i = 1, 10 do
@@ -226,6 +298,19 @@ hl.bind(
 	{ locked = true, repeating = true }
 )
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+
+-- Play/pause/next/prev, from the keyboard or a Bluetooth speaker's buttons (its AVRCP
+-- device sends these keys). playerctl passes them to the active MPRIS player.
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioStop", hl.dsp.exec_cmd("playerctl pause"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+-- MX Master 2S thumbwheel (horizontal scroll) as volume.
+-- Down steps are bigger than up steps so it's quick to turn things down.
+hl.bind("mouse_right", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 4%+"), { locked = true })
+hl.bind("mouse_left", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 8%-"), { locked = true })
 
 hl.bind("Print", hl.dsp.exec_cmd([[grim -g "$(slurp)" - | wl-copy]]))
 
