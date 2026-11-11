@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 156" width="336" height="156">
+<style>
+.bg{fill:#e8e2d9}.win{fill:#f7f3ee;stroke:#9c8f81;stroke-width:1.5}.m{fill:#d6e6e4;stroke:#3f7c78;stroke-width:2}
+text{font:600 18px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#3a3530;text-anchor:middle;dominant-baseline:central}
+@media (prefers-color-scheme:dark){.bg{fill:#0e1515}.win{fill:#1a2423;stroke:#9c8f81}.m{fill:#1f3634;stroke:#67a29e}text{fill:#e0d9d1}}
+</style>
+<rect class="bg" x="0" y="0" width="336" height="156" rx="8"/>
+<clipPath id="s"><rect x="8" y="8" width="320" height="140"/></clipPath><g clip-path="url(#s)">
+<rect class="win" x="11.0" y="11.0" width="87.0" height="64.0" rx="5"/>
+<text x="54.5" y="43.0">2</text>
+<rect class="win" x="11.0" y="81.0" width="87.0" height="64.0" rx="5"/>
+<text x="54.5" y="113.0">4</text>
+<rect class="win m" x="104.0" y="11.0" width="128.0" height="134.0" rx="5"/>
+<text x="168.0" y="78.0">1</text>
+<rect class="win" x="238.0" y="11.0" width="87.0" height="134.0" rx="5"/>
+<text x="281.5" y="78.0">3</text>
+</g>
+</svg>

@@ -23,61 +23,23 @@ Shown with 4 windows (1 = master / first window).
 
 **1. Centered master** (default, made for the ultrawide; master is 42% wide)
 
-```
-┌──────────┬──────────────────┬──────────┐
-│    2     │                  │          │
-│          │                  │          │
-├──────────┤        1         │    3     │
-│    4     │                  │          │
-│          │                  │          │
-└──────────┴──────────────────┴──────────┘
-```
+<img src="docs/tiling/centered-master.svg" alt="centered-master layout" width="336">
 
 **2. Master + stack**
 
-```
-┌──────────────────┬─────────────────────┐
-│                  │          2          │
-│                  ├─────────────────────┤
-│        1         │          3          │
-│                  ├─────────────────────┤
-│                  │          4          │
-└──────────────────┴─────────────────────┘
-```
+<img src="docs/tiling/master-stack.svg" alt="master-stack layout" width="336">
 
 **3. Dwindle (spiral)**
 
-```
-┌────────────────────┬───────────────────┐
-│                    │         2         │
-│                    │                   │
-│         1          ├─────────┬─────────┤
-│                    │    3    │    4    │
-│                    │         │         │
-└────────────────────┴─────────┴─────────┘
-```
+<img src="docs/tiling/dwindle.svg" alt="dwindle layout" width="336">
 
 **4. Scrolling columns** (each column is 1/3 of the screen, the rest scroll off-screen)
 
-```
-      ┌────────────┬────────────┬────────────┐
- ◀ 1  │     2      │     3      │     4      │  5 ▶
-      │            │            │            │
-      │            │            │            │
-      └────────────┴────────────┴────────────┘
-```
+<img src="docs/tiling/scrolling.svg" alt="scrolling layout" width="336">
 
 **5. Grid** (2 columns of equal cells; 1 window = full screen, 5+ adds rows)
 
-```
-┌────────────────────┬───────────────────┐
-│                    │                   │
-│         1          │         2         │
-├────────────────────┼───────────────────┤
-│                    │                   │
-│         3          │         4         │
-└────────────────────┴───────────────────┘
-```
+<img src="docs/tiling/grid.svg" alt="grid layout" width="336">
 
 ## Install
 
