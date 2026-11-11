@@ -23,7 +23,7 @@ local c = {
 local terminal = "alacritty"
 local menu = "fuzzel"
 local fileMgr = "nautilus"
-local wallpaper = os.getenv("HOME") .. "/Pictures/wallpapers/979.jpg"
+local wallpaper = os.getenv("HOME") .. "/Pictures/wallpapers/wallpaper.png"
 
 ----------------------------------------------------------------
 -- ENVIRONMENT  (must come before anything else loads)
