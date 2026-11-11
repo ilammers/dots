@@ -1,0 +1,70 @@
+# Ember Muted for Alacritty — same palette/ANSI mapping as the VS Code theme and nanorc.
+
+[terminal.shell]
+program = "/usr/bin/zsh"
+args = ["-c", "fastfetch --pipe false | perl -pe 's/(\\e\\[[0-9;?]*[a-zA-Z])|([A-Z]+)/$1 ? $1 : lc($2)/ge'; exec zsh"]
+
+[colors.primary]
+background = "#0e1515"
+foreground = "#e0d9d1"
+
+[colors.cursor]
+text = "#0e1515"
+cursor = "#c27861"
+
+[colors.selection]
+text = "#e0d9d1"
+background = "#203231"
+
+[colors.normal]
+black   = "#0c1110"
+red     = "#d45c54"
+green   = "#68b18c"
+yellow  = "#e0be7b"
+blue    = "#79b1c3"
+magenta = "#b49ac1"
+cyan    = "#67a29e"
+white   = "#9c8f81"
+
+[colors.bright]
+black   = "#4b5857"
+red     = "#db7e57"
+green   = "#68b18c"
+yellow  = "#e0be7b"
+blue    = "#c4826e"
+magenta = "#b49ac1"
+cyan    = "#c27861"
+white   = "#e0d9d1"
+
+[font]
+size = 16.0
+
+[font.normal]
+family = "MesloLGM Nerd Font Mono"
+style = "Regular"
+
+[font.italic]
+family = "MesloLGM Nerd Font Mono"
+style = "Italic"
+
+# No Mono Bold/Bold Italic installed — falling back to Propo's Bold face. Propo only
+# changes the width of the patched icon glyphs, not the base Meslo letterforms, so
+# regular text still lines up; only nerd-font icons rendered bold may sit slightly
+# off-cell. bold_italic has no italic option available at all, so it's bold-only.
+[font.bold]
+family = "MesloLGM Nerd Font Propo"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGM Nerd Font Propo"
+style = "Bold"
+
+[window]
+decorations = "None"
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

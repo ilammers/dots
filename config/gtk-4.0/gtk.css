@@ -1,0 +1,105 @@
+/* Ember Muted — GTK4 / libadwaita */
+
+:root {
+  /* window + chrome */
+  --window-bg-color:    #151e1d;
+  --window-fg-color:    #e0d9d1;
+  --headerbar-bg-color: #0c1110;
+  --headerbar-fg-color: #e0d9d1;
+  --headerbar-border-color:   #e0d9d1;
+  --headerbar-backdrop-color: #0e1515;
+  --headerbar-shade-color:    rgba(0, 0, 0, 0.36);
+
+  /* file list / content area */
+  --view-bg-color: #0e1515;
+  --view-fg-color: #e0d9d1;
+
+  /* sidebar */
+  --sidebar-bg-color:       #151e1d;
+  --sidebar-fg-color:       #e0d9d1;
+  --sidebar-backdrop-color: #0c1110;
+  --sidebar-border-color:   #232f2e;
+  --sidebar-shade-color:    rgba(0, 0, 0, 0.25);
+
+  --secondary-sidebar-bg-color:     #151e1d;
+  --secondary-sidebar-fg-color:     #e0d9d1;
+  --secondary-sidebar-border-color: #232f2e;
+  --secondary-sidebar-shade-color:  rgba(0, 0, 0, 0.25);
+
+  /* surfaces */
+  --card-bg-color:    #172120;
+  --card-fg-color:    #e0d9d1;
+  --card-shade-color: rgba(0, 0, 0, 0.30);
+  --dialog-bg-color:  #151e1d;
+  --dialog-fg-color:  #e0d9d1;
+  --popover-bg-color: #151e1d;
+  --popover-fg-color: #e0d9d1;
+  --popover-shade-color: rgba(0, 0, 0, 0.30);
+
+  /* accents + status */
+  --accent-bg-color:      #c27861;
+  --accent-fg-color:      #0e1515;
+  --accent-color:         #c4826e;
+  --destructive-bg-color: #d45c54;
+  --destructive-fg-color: #0e1515;
+  --destructive-color:    #d45c54;
+  --success-bg-color:     #68b18c;
+  --success-fg-color:     #0e1515;
+  --success-color:        #68b18c;
+  --warning-bg-color:     #e0be7b;
+  --warning-fg-color:     #0e1515;
+  --warning-color:        #e0be7b;
+  --error-bg-color:       #d45c54;
+  --error-fg-color:       #0e1515;
+  --error-color:          #d45c54;
+
+  --borders:      #232f2e;
+  --shade-color:  rgba(0, 0, 0, 0.36);
+  --scrollbar-outline-color: #0c1110;
+}
+
+/* fallbacks for libadwaita < 1.6 */
+@define-color window_bg_color    #151e1d;
+@define-color window_fg_color    #e0d9d1;
+@define-color headerbar_bg_color #0c1110;
+@define-color headerbar_fg_color #e0d9d1;
+@define-color view_bg_color      #0e1515;
+@define-color view_fg_color      #e0d9d1;
+@define-color sidebar_bg_color   #151e1d;
+@define-color sidebar_fg_color   #e0d9d1;
+@define-color card_bg_color      #172120;
+@define-color dialog_bg_color    #151e1d;
+@define-color popover_bg_color   #151e1d;
+@define-color accent_bg_color    #c27861;
+@define-color accent_fg_color    #0e1515;
+@define-color accent_color       #c4826e;
+@define-color borders            #232f2e;
+
+/* selection — muted teal instead of full accent fill */
+columnview listview > row:selected,
+gridview > child:selected,
+.navigation-sidebar > row:selected {
+  background-color: #203231;
+  color: #e0d9d1;
+}
+
+columnview listview > row:hover,
+gridview > child:hover,
+.navigation-sidebar > row:hover {
+  background-color: #172120;
+}
+
+/* alternating rows off — reads cleaner on a dark bg */
+columnview.view listview > row:nth-child(even) {
+  background-color: transparent;
+}
+
+/* column headers + pathbar */
+columnview header button {
+  background-color: #0c1110;
+  color: #9c8f81;
+  border-color: #232f2e;
+}
+
+.path-bar button { color: #9c8f81; }
+.path-bar button:last-child { color: #e0d9d1; }

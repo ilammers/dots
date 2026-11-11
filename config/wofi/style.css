@@ -1,0 +1,85 @@
+/* wofi — palette, elevated surface */
+
+window {
+  background-color: #1a2222;
+  /* border: 2px solid #67a29e; */
+  border-radius: 8px;
+  font-family: "MesloLGM Nerd Font", monospace;
+  font-size: 13px;
+  color: #e0d9d1;
+}
+
+#outer-box {
+  margin: 0px;
+  padding: 10px;
+}
+
+#input {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  background-color: #0e1515;
+  color: #e0d9d1;
+  border: 1px solid #2f3c3b;
+  border-radius: 6px;
+  caret-color: #d0ba95;
+}
+
+#input:focus {
+  border: 1px solid #67a29e;
+  outline: none;
+}
+
+#input image {
+  color: #60766b;
+}
+
+#scroll {
+  margin: 0px;
+  border: none;
+}
+
+#inner-box {
+  background-color: transparent;
+}
+
+#entry {
+  padding: 7px 10px;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+  background-color: transparent;
+  color: #9c8f81;
+}
+
+#entry:selected {
+  background-color: #232f2e;
+  border-left: 3px solid #67a29e;
+  color: #e0d9d1;
+}
+
+#entry image {
+  margin-right: 10px;
+}
+
+#text {
+  color: #9c8f81;
+}
+
+#text:selected {
+  color: #e0d9d1;
+}
+
+/* fuzzy-match characters */
+#text mark,
+#entry:selected #text mark {
+  background-color: transparent;
+  color: #d0ba95;
+  font-weight: bold;
+}
+
+#unselected {
+  color: #9c8f81;
+}
+
+#selected {
+  color: #e0d9d1;
+}

@@ -1,0 +1,46 @@
+// fastfetch — Ember Muted
+// ~/.config/fastfetch/config.jsonc
+//
+// palette
+//   accent  #c27861  38;2;194;120;97
+//   keyword #67a29e  38;2;103;162;158
+//   fg      #e0d9d1  38;2;224;217;209
+//   fg_dim  #9c8f81  38;2;156;143;129
+//   border  #232f2e  38;2;35;47;46
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/fedora-mini.txt",
+    "color": { "1": "38;2;194;120;97" },
+    "padding": { "top": 2, "left": 2, "right": 4 }
+  },
+
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "38;2;103;162;158",
+      "title": "38;2;194;120;97",
+      "output": "38;2;224;217;209"
+    },
+    "key": { "width": 7 }
+  },
+
+  "modules": [
+    { "type": "title", "format": "{user-name}@{host-name}" },
+    { "type": "separator", "string": "─", "outputColor": "38;2;35;47;46" },
+
+    { "type": "os",       "key": "os" },
+    { "type": "kernel",   "key": "krnl" },
+    { "type": "shell",    "key": "shell" },
+    { "type": "wm",       "key": "wm" },
+    { "type": "terminal", "key": "term" },
+    { "type": "cpu",      "key": "cpu" },
+    { "type": "gpu",      "key": "gpu" },
+    { "type": "memory",   "key": "mem" },
+
+    "break",
+    { "type": "colors", "symbol": "square", "paddingLeft": 1 }
+  ]
+}

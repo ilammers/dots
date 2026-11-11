@@ -1,0 +1,111 @@
+/* waybar — palette */
+
+* {
+  font-family: "MesloLGM Nerd Font", monospace;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: #e0d9d1;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: #0e1515;
+  border: 1px solid #232f2e;
+  border-radius: 8px;
+  padding: 0 4px;
+}
+
+/* workspaces */
+
+#workspaces button {
+  padding: 0 10px;
+  margin: 3px 1px;
+  color: #60766b;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+#workspaces button:hover {
+  color: #d0ba95;
+  background-color: #1a2222;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#workspaces button.active {
+  color: #e0d9d1;
+  background-color: #0e1515;
+  font-weight: bold;
+}
+
+#workspaces button.urgent {
+  color: #0e1515;
+  background-color: #d45c54;
+}
+
+#workspaces button.empty {
+  color: #232f2e;
+}
+
+/* modules */
+
+#window,
+#submap,
+#clock,
+#cpu,
+#memory,
+#pulseaudio,
+#network,
+#tray {
+  padding: 0 12px;
+  margin: 3px 0;
+}
+
+#window     { color: #9c8f81; }
+#submap     { color: #c4826e; font-weight: bold; }
+#clock      { color: #d0ba95; }
+#cpu        { color: #67a29e; }
+#memory     { color: #79b1c3; }
+#pulseaudio { color: #c4826e; }
+#network    { color: #68b18c; }
+
+/* states */
+
+#pulseaudio.muted     { color: #60766b; }
+#network.disconnected { color: #d45c54; }
+#cpu.warning,
+#memory.warning       { color: #d0ba95; }
+#cpu.critical,
+#memory.critical      { color: #d45c54; }
+
+window#waybar.empty #window {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+/* tooltips — these inherit GTK defaults otherwise */
+
+tooltip {
+  background-color: #1a2222;
+  border: 1px solid #67a29e;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: #e0d9d1;
+  padding: 4px;
+}
+
+window#waybar.empty .modules-center {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
