@@ -1,6 +1,6 @@
 # dotfiles
 
-Fedora + Hyprland setup.
+Fedora + Hyprland setup. Designed for a single, ultra-wide display. 
 
 ![desktop](docs/screenshot.jpg)
 
